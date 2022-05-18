@@ -2,7 +2,10 @@ import React from 'react'
 import style from "./MainDisplay.module.css"
 
 
-const MainDisplayCard = ({currentTemp ,high, low, description }) => {
+const MainDisplayCard = (props) => {
+    
+    const {currentTemp ,high, low, description } =props
+    
     return (
         <div data-testid="displayCard" className={style.wrapper}>
            <h2 id={style.currentTemp}>{currentTemp}</h2> 

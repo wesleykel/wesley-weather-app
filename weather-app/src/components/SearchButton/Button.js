@@ -1,6 +1,8 @@
 import React from 'react'
 
-const Button = ({label, func}) => {
+const Button = (props) => {
+  const{label, func} = props
+    
     return (
      <button  onClick={func} type={'submit'}>{label}</button>
     )
