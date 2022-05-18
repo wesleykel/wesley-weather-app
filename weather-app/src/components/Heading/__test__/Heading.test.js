@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 import Heading from '../Heading';
 
 
-test('renders learn react link', () => {
+it('renders title when passed as a prop', () => {
   render(<Heading title={"Weather App"}/>);
-  const linkElement = screen.getByText(/weather app/i);
-  expect(linkElement).toBeInTheDocument();
+  const headingText = screen.getByText(/weather app/i);
+  expect(headingText).toBeInTheDocument();
 });
