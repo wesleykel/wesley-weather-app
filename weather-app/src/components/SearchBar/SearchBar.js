@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import style from "./SearchBar.module.css"
+import { WeatherContext } from '../../App'
 
 const SearchBar = () => {
+    const {city, setCity} =useContext(WeatherContext)
     
     const handleChange = (e) => {
         e.preventDefault()
-    console.log(e.target.value)
+   setCity(e.target.value)
     }
-    
+
     
     return (
       <form className={style.wrapper}>

@@ -5,8 +5,7 @@ it('renders Main Display Card', () => {
     render(<MainDisplayCard />);
     const currentTemp = screen.getByTestId("displayCard");
     expect(currentTemp).toBeInTheDocument();
-    
-    
+     
   });
 
 
