@@ -13,7 +13,7 @@ const {city , cityKey, setCityKey , setWeatherData, weatherData }=useContext(Wea
 //Api call to get location key, from searchBar input , runs when page loads using useEffect to get the London Weather First
 const getLocationKey =()=> {
 
-fetch(`https://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09${API_KEY}&q=${city}`)
+fetch(` https://cors-anywhere.herokuapp.com/https://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09${API_KEY}&q=${city}`)
 .then(response => response.json())
 .then(data => setCityKey(data[0].Key))
 .catch(error => console.log(error))
@@ -23,7 +23,7 @@ fetch(`https://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09
 //Second Api Call to get the weather for 5 days including today, couldn't get today and next 5 days as this isn't part of the free API package 
 const getWeather =()=>{
 
-    fetch(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${API_KEY}`)
+    fetch(` https://cors-anywhere.herokuapp.com/https://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${API_KEY}`)
     .then(response => response.json())
 .then(data => setWeatherData(data))
 .catch(error => console.log(error))
