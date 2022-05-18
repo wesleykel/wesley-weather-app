@@ -1,10 +1,11 @@
 
+import Heading from '../components/Heading/Heading';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-     hello world
+    <Heading title={"Weather App"} />
     </div>
   );
 }
