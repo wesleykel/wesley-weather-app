@@ -10,6 +10,7 @@ function App() {
     <Heading title={"Weather App"} />
     <MainDisplayCard currentTemp={20} high={10} low={12} description={"hot outside"}/>
     <SearchBar/>
+    <Button />
     </div>
   );
 }
