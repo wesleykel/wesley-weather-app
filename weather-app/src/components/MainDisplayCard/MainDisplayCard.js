@@ -4,7 +4,7 @@ import style from "./MainDisplay.module.css"
 
 const MainDisplayCard = (props) => {
     
-    const {currentTemp ,high, low, description } =props
+    const {currentTemp ,high, low, description } = props
     
     return (
         <div data-testid="displayCard" className={style.wrapper}>
