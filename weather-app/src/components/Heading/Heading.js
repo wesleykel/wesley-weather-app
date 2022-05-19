@@ -6,7 +6,7 @@ const Heading = ({title}) => {
 
 
     return (
-       <h1 id={style.title} >{title}</h1>
+       <h1 id={style.titles} >{title}</h1>
     )
 }
 

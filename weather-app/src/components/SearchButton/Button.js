@@ -1,10 +1,10 @@
 import React from 'react'
-
+import style from "./Button.module.css"
 const Button = (props) => {
   const{label, func} = props
     
     return (
-     <button  onClick={func} type={'submit'}>{label}</button>
+     <button id={style.button} onClick={func} type={'submit'}>{label}</button>
     )
 }
 

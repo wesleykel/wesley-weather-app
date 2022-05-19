@@ -1,0 +1,17 @@
+
+.wrapper label{
+
+
+    padding: 1em;
+}
+
+
+#searchBar{
+  
+    border-radius: 5px;
+    width: 20vw;
+    text-align: center;
+    border: none;
+    padding: .5em;
+    
+}
