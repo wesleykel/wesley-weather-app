@@ -1,32 +1,38 @@
 
+import './App.css';
+import { createContext, useState } from 'react';
 import Heading from '../components/Heading/Heading';
 import MainDisplayCard from '../components/MainDisplayCard/MainDisplayCard';
 import SearchBar from '../components/SearchBar/SearchBar';
-//import Button from '../components/SearchButton/Button';
-import WeekDayDisplayCard from '../components/WeekDayDisplayCards/WeekDayDisplay';
-import { createContext, useState } from 'react';
-
-import './App.css';
 import ApiCalls from '../components/ApiCalls/apiCall';
+import FourDayRes from '../components/FourDayResultContainer/FourDayResult';
+
 
 
 export const WeatherContext = createContext()
 
 function App() {
   
-  const [city , setCity] = useState();
-  const [cityKey, setCityKey] = useState(328328)
+  const [city , setCity] = useState("London");
+ 
   const [weatherData, setWeatherData]=useState()
-  
+  console.log(city)
   
   return (
     <div className="App">
-    <WeatherContext.Provider value={{city, setCity ,cityKey , setCityKey , weatherData, setWeatherData}}>
+    <WeatherContext.Provider value={{city, setCity , weatherData, setWeatherData}}>
+    <div className="header">
     <Heading title={"Weather App"} />
+      
+    <div className="searchBarFlex">
+      <SearchBar/>
+       <ApiCalls/>
+    </div>
+    </div>  
+    <div className="resultsGrid">       
     <MainDisplayCard currentTemp={20} high={10} low={12} description={"hot outside"}/>
-    <SearchBar/>
-   <ApiCalls/>
-    <WeekDayDisplayCard day={"monday"} high={20} low={15}/>
+    <FourDayRes/>
+    </div>
     </WeatherContext.Provider>
    
 

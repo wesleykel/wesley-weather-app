@@ -13,8 +13,8 @@ const SearchBar = () => {
     
     return (
       <form className={style.wrapper}>
-      <label for="citySearch">Search</label>
-         <input id={style.searchBar}  required="required" name='citySearch' type="text" placeholder='Enter a city ' onChange={handleChange} />
+      <label >Search</label>
+         <input id={style.searchBar}  required="required" value={city} type="text" placeholder='Enter a city ' onChange={handleChange} />
      </form>
     )
 }

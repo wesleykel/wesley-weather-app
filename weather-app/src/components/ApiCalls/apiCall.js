@@ -1,57 +1,60 @@
 
-import React, { useEffect} from 'react'
+import React, { useEffect, useState} from 'react'
 import { useContext } from "react"
 import { WeatherContext } from "../../App"
 import Button from '../SearchButton/Button'
 
 
 const ApiCalls = () => {
-const API_KEY = process.env.REACT_APP_API_KEY      
-const {city , cityKey, setCityKey , setWeatherData, weatherData }=useContext(WeatherContext)
-  
+const API_KEY = process.env.REACT_APP_API_KEY   
+const API_LOCATION_URL =  "https://api.openweathermap.org/geo/1.0/direct" 
+const API_WEATHER_URL = "https://api.openweathermap.org/data/2.5/onecall?"
 
-//Api call to get location key, from searchBar input , runs when page loads using useEffect to get the London Weather First
-const getLocationKey =()=> {
+const {city  ,setCity, setWeatherData,weatherData }=useContext(WeatherContext)
 
-fetch(` https://cors-anywhere.herokuapp.com/https://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09${API_KEY}&q=${city}`)
-.then(response => response.json())
-.then(data => setCityKey(data[0].Key))
-.catch(error => console.log(error))
+
+
+ async function getCity(){
+
+    if(!city){
+
+        return
+    }
+
+const longAndLat = await fetch(`${API_LOCATION_URL}?q=${city}&limit=5&appid=${API_KEY}`).then(res => res.json()).catch(reqErr => console.error(reqErr))
+const latitude = longAndLat[0].lat
+const longitude =longAndLat[0].lon
+
+ await fetch(`${API_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=metric&exclude={}&appid=${API_KEY}`)
+
+.then(res => res.json())
+.then(data =>{
+    setWeatherData(data)
+})
+.catch(reqErr => console.error(reqErr))
+
 }
 
 
-//Second Api Call to get the weather for 5 days including today, couldn't get today and next 5 days as this isn't part of the free API package 
-const getWeather =()=>{
 
-    fetch(` https://cors-anywhere.herokuapp.com/https://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${API_KEY}`)
-    .then(response => response.json())
-.then(data => setWeatherData(data))
-.catch(error => console.log(error))
-
-
-}
-
-console.log(weatherData)
-//Run on Page load using the key for London 328328 
 useEffect(()=>{
 
-getLocationKey()
+getCity()
 
 },[])
 
-//Triggged when the cityKey state changes to call the getWeather API function
 useEffect(()=>{
+console.log(weatherData)
+setCity("")
+},[weatherData])
 
-getWeather()
 
-
-},[cityKey])
 
 
     
     return (
         <div>
-  <Button func={getLocationKey} label={"Search"} ></Button>
+  <Button func={getCity}  label={"submit"} ></Button>
         </div>
     )
 }
